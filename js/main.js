@@ -1,6 +1,6 @@
 /**
  * ================================================================
- * MERAKI SALON & MAKEUP STUDIO - MAIN JAVASCRIPT
+ * New SHE BEAUTY SALOON & MAKEUP STUDIO - MAIN JAVASCRIPT
  * Premium Interactions, Smooth Scroll, Filters, Sliders, & Lightbox
  * ================================================================
  */
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const img = currentItem.querySelector("img");
             if (img && lightboxImg) {
                 lightboxImg.setAttribute("src", img.getAttribute("src"));
-                lightboxImg.setAttribute("alt", img.getAttribute("alt") || "Meraki Salon");
+                lightboxImg.setAttribute("alt", img.getAttribute("alt") || "New She Beauty Saloon");
             }
         };
 
@@ -465,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Optional LocalStorage Save (Luxury Admin Feature)
             const newAppointment = {
-                id: 'MERAKI-' + Date.now(),
+                id: 'NEWSHE-' + Date.now(),
                 fullName,
                 phone,
                 service: serviceText,
@@ -474,9 +474,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 created_at: new Date().toISOString()
             };
 
-            const existingAppointments = JSON.parse(localStorage.getItem("meraki_appointments") || "[]");
+            const existingAppointments = JSON.parse(localStorage.getItem("new_she_appointments") || "[]");
             existingAppointments.push(newAppointment);
-            localStorage.setItem("meraki_appointments", JSON.stringify(existingAppointments));
+            localStorage.setItem("new_she_appointments", JSON.stringify(existingAppointments));
 
             // Show beautiful Success Modal
             successModalOverlay.classList.add("active");
