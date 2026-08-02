@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+
+Sitemap: https://paransignature.com/sitemap.xml
+
+# Paran Signature | Salon & Aesthetics
+# Luxury Beauty Salon in Sheikhupura, Pakistan
