@@ -1,6 +1,6 @@
 /* 
 ================================================================
-* MERAKI SALON & MAKEUP STUDIO - PREMIUM CSS STYLESHEET
+* NEW SHE BEAUTY SALOON - PREMIUM CSS STYLESHEET
 * Designed with Luxury, Sophistication, & Elegance in mind
 * Theme: Ivory, Champagne Gold, Rose Gold, Velvet Black
 ================================================================
@@ -2386,3 +2386,16 @@ footer {
 .delay-3 { transition-delay: 0.3s; }
 .delay-4 { transition-delay: 0.4s; }
 .delay-5 { transition-delay: 0.5s; }
+
+/* New She refinement: maintain clear navigation over the hero image */
+header:not(.scrolled) .logo-main,
+header:not(.scrolled) .nav-link { color: var(--color-bg-light); }
+header:not(.scrolled) .logo-sub { color: var(--color-gold-hover); }
+header:not(.scrolled) .nav-toggle span { background-color: var(--color-bg-light); }
+@media (max-width: 991px) {
+  header:not(.scrolled) .nav-menu .nav-link { color: var(--color-primary); }
+  header:not(.scrolled) .nav-menu .nav-link.active { color: var(--color-gold-dark); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
