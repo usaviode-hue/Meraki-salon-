@@ -1,539 +1,443 @@
-/**
- * ================================================================
- * New SHE BEAUTY SALOON & MAKEUP STUDIO - MAIN JAVASCRIPT
- * Premium Interactions, Smooth Scroll, Filters, Sliders, & Lightbox
- * ================================================================
- */
+/* ============================================
+   Paran Signature | Salon & Aesthetics
+   Premium JavaScript
+   ============================================ */
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- 1. PRELOADER & HERO LOAD ---
-    const preloader = document.getElementById("preloader");
-    if (preloader) {
-        window.addEventListener("load", () => {
-            setTimeout(() => {
-                preloader.style.opacity = "0";
-                preloader.style.visibility = "hidden";
-            }, 800); // Allow preloader animations to run briefly
-        });
-        
-        // Safety timeout in case window load event doesn't fire
-        setTimeout(() => {
-            preloader.style.opacity = "0";
-            preloader.style.visibility = "hidden";
-        }, 3000);
-    }
+document.addEventListener('DOMContentLoaded', function() {
 
-    // --- 2. SCROLL PROGRESS BAR & STICKY HEADER ---
-    const scrollProgress = document.getElementById("scroll-progress");
-    const header = document.querySelector("header");
-    const backToTopBtn = document.querySelector(".float-back-to-top");
-
-    window.addEventListener("scroll", () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        
-        // Progress bar
-        if (scrollProgress && scrollHeight > 0) {
-            const scrollPercentage = (scrollTop / scrollHeight) * 100;
-            scrollProgress.style.width = `${scrollPercentage}%`;
-        }
-
-        // Sticky Header
-        if (header) {
-            if (scrollTop > 50) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        }
-
-        // Floating Back-To-Top Button
-        if (backToTopBtn) {
-            if (scrollTop > 500) {
-                backToTopBtn.style.display = "flex";
-                setTimeout(() => backToTopBtn.style.opacity = "1", 10);
-            } else {
-                backToTopBtn.style.opacity = "0";
-                setTimeout(() => {
-                    if (window.pageYOffset <= 500) {
-                        backToTopBtn.style.display = "none";
-                    }
-                }, 400);
-            }
-        }
-        
-        // Active Navigation link on scroll
-        updateActiveNavLink();
+    // --- Preloader ---
+    const preloader = document.getElementById('preloader');
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            preloader.classList.add('hidden');
+        }, 800);
     });
 
-    if (backToTopBtn) {
-        backToTopBtn.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
+    // Fallback: hide preloader after 3 seconds max
+    setTimeout(function() {
+        preloader.classList.add('hidden');
+    }, 3000);
+
+
+    // --- Scroll Progress Bar ---
+    const scrollProgress = document.getElementById('scroll-progress');
+    
+    function updateScrollProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        scrollProgress.style.width = scrollPercent + '%';
     }
 
-    // --- 3. MOBILE MENU TOGGLE ---
-    const navToggle = document.querySelector(".nav-toggle");
-    const navMenu = document.querySelector(".nav-menu");
-    const navLinks = document.querySelectorAll(".nav-link");
 
-    if (navToggle && navMenu) {
-        navToggle.addEventListener("click", () => {
-            navToggle.classList.toggle("active");
-            navMenu.classList.toggle("active");
-            document.body.style.overflow = navMenu.classList.contains("active") ? "hidden" : "initial";
-        });
-
-        // Close mobile menu when clicking a link
-        navLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                navToggle.classList.remove("active");
-                navMenu.classList.remove("active");
-                document.body.style.overflow = "initial";
-            });
-        });
+    // --- Sticky Header ---
+    const header = document.getElementById('header');
+    
+    function updateHeader() {
+        if (window.scrollY > 80) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
     }
 
-    // Active Navigation link updates based on section
+
+    // --- Back to Top Button ---
+    const backToTop = document.getElementById('backToTop');
+    
+    function updateBackToTop() {
+        if (window.scrollY > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    }
+
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+
+    // --- Combined Scroll Handler (performance) ---
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateScrollProgress();
+                updateHeader();
+                updateBackToTop();
+                updateActiveNavLink();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+
+    // --- Mobile Menu Toggle ---
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileMenuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close mobile menu on nav link click
+    document.querySelectorAll('.nav-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+            mobileMenuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Close mobile menu on outside click
+    document.addEventListener('click', function(e) {
+        if (navMenu.classList.contains('active') && 
+            !navMenu.contains(e.target) && 
+            !mobileMenuToggle.contains(e.target)) {
+            mobileMenuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+
+    // --- Active Navigation Link on Scroll ---
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
     function updateActiveNavLink() {
-        const sections = document.querySelectorAll("section[id]");
-        const scrollPosition = (window.pageYOffset || document.documentElement.scrollTop) + 120;
+        const scrollPos = window.scrollY + 150;
 
-        sections.forEach(section => {
+        sections.forEach(function(section) {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute("id");
-            const correspondingLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+            const sectionId = section.getAttribute('id');
 
-            if (correspondingLink) {
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    navLinks.forEach(link => link.classList.remove("active"));
-                    correspondingLink.classList.add("active");
-                } else {
-                    correspondingLink.classList.remove("active");
-                }
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                navLinks.forEach(function(link) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
     }
 
-    // --- 4. SERVICES CATEGORY FILTERING ---
-    const tabBtns = document.querySelectorAll(".tab-btn");
-    const serviceCards = document.querySelectorAll(".service-card");
 
-    if (tabBtns.length > 0 && serviceCards.length > 0) {
-        tabBtns.forEach(btn => {
-            btn.addEventListener("click", () => {
-                // Active tab class switch
-                tabBtns.forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-
-                const filterValue = btn.getAttribute("data-filter");
-
-                serviceCards.forEach(card => {
-                    const cardCategory = card.getAttribute("data-category");
-                    
-                    if (filterValue === "all" || cardCategory === filterValue) {
-                        card.classList.remove("hidden");
-                        // Fade in transition
-                        card.style.opacity = "0";
-                        card.style.transform = "translateY(15px)";
-                        setTimeout(() => {
-                            card.style.opacity = "1";
-                            card.style.transform = "translateY(0)";
-                        }, 50);
-                    } else {
-                        card.classList.add("hidden");
-                    }
-                });
-            });
-        });
-    }
-
-    // --- 5. ANIMATED STATS COUNTER ---
-    const statsSection = document.querySelector(".stats-bar");
-    const statCounters = document.querySelectorAll(".counter-value");
-
-    if (statsSection && statCounters.length > 0) {
-        let countStarted = false;
-
-        const countUp = () => {
-            statCounters.forEach(counter => {
-                const target = parseInt(counter.getAttribute("data-target"));
-                const suffix = counter.getAttribute("data-suffix") || "";
-                let count = 0;
-                const duration = 2000; // 2 seconds
-                const increment = target / (duration / 16); // ~60fps
-
-                const updateCount = () => {
-                    count += increment;
-                    if (count < target) {
-                        counter.innerText = Math.floor(count) + suffix;
-                        requestAnimationFrame(updateCount);
-                    } else {
-                        counter.innerText = target + suffix;
-                    }
-                };
-
-                updateCount();
-            });
-        };
-
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !countStarted) {
-                    countStarted = true;
-                    countUp();
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        counterObserver.observe(statsSection);
-    }
-
-    // --- 6. MODERN GALLERY MASONRY FILTER & LIGHTBOX MODAL ---
-    const galleryItems = document.querySelectorAll(".gallery-item");
-    const galleryFilters = document.querySelectorAll(".gallery-filters .tab-btn");
-    
-    // Lightbox nodes
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.querySelector(".lightbox-img");
-    const lightboxClose = document.querySelector(".lightbox-close");
-    const lightboxPrev = document.querySelector(".lightbox-prev");
-    const lightboxNext = document.querySelector(".lightbox-next");
-
-    let currentGalleryIndex = 0;
-    let visibleGalleryItems = [...galleryItems];
-
-    // Gallery Category Filter
-    if (galleryFilters.length > 0) {
-        galleryFilters.forEach(btn => {
-            btn.addEventListener("click", () => {
-                galleryFilters.forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-
-                const filterValue = btn.getAttribute("data-filter");
-                visibleGalleryItems = [];
-
-                galleryItems.forEach(item => {
-                    const itemCategory = item.getAttribute("data-category");
-                    
-                    if (filterValue === "all" || itemCategory === filterValue) {
-                        item.style.display = "block";
-                        setTimeout(() => {
-                            item.style.opacity = "1";
-                            item.style.transform = "scale(1)";
-                        }, 50);
-                        visibleGalleryItems.push(item);
-                    } else {
-                        item.style.opacity = "0";
-                        item.style.transform = "scale(0.9)";
-                        setTimeout(() => {
-                            item.style.display = "none";
-                        }, 300);
-                    }
-                });
-            });
-        });
-    }
-
-    // Lightbox Functions
-    if (galleryItems.length > 0 && lightbox) {
-        // Open lightbox
-        galleryItems.forEach((item, index) => {
-            item.addEventListener("click", () => {
-                // Find current item's index inside currently visible set
-                currentGalleryIndex = visibleGalleryItems.indexOf(item);
-                if (currentGalleryIndex === -1) currentGalleryIndex = 0;
+    // --- Smooth Scrolling for Anchor Links ---
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                const headerHeight = header.offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight;
                 
-                showLightboxImage();
-                lightbox.classList.add("active");
-                document.body.style.overflow = "hidden";
-            });
-        });
-
-        const showLightboxImage = () => {
-            if (visibleGalleryItems.length === 0) return;
-            const currentItem = visibleGalleryItems[currentGalleryIndex];
-            const img = currentItem.querySelector("img");
-            if (img && lightboxImg) {
-                lightboxImg.setAttribute("src", img.getAttribute("src"));
-                lightboxImg.setAttribute("alt", img.getAttribute("alt") || "New She Beauty Saloon");
-            }
-        };
-
-        const nextImage = () => {
-            currentGalleryIndex = (currentGalleryIndex + 1) % visibleGalleryItems.length;
-            showLightboxImage();
-        };
-
-        const prevImage = () => {
-            currentGalleryIndex = (currentGalleryIndex - 1 + visibleGalleryItems.length) % visibleGalleryItems.length;
-            showLightboxImage();
-        };
-
-        // Event listeners for controls
-        if (lightboxClose) {
-            lightboxClose.addEventListener("click", () => {
-                lightbox.classList.remove("active");
-                document.body.style.overflow = "initial";
-            });
-        }
-
-        if (lightboxNext) {
-            lightboxNext.addEventListener("click", (e) => {
-                e.stopPropagation();
-                nextImage();
-            });
-        }
-
-        if (lightboxPrev) {
-            lightboxPrev.addEventListener("click", (e) => {
-                e.stopPropagation();
-                prevImage();
-            });
-        }
-
-        // Close when clicking overlay (outside the image container)
-        lightbox.addEventListener("click", (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove("active");
-                document.body.style.overflow = "initial";
-            }
-        });
-
-        // Keyboard controls
-        document.addEventListener("keydown", (e) => {
-            if (lightbox.classList.contains("active")) {
-                if (e.key === "ArrowRight") nextImage();
-                if (e.key === "ArrowLeft") prevImage();
-                if (e.key === "Escape") {
-                    lightbox.classList.remove("active");
-                    document.body.style.overflow = "initial";
-                }
-            }
-        });
-    }
-
-    // --- 7. PREMIUM TESTIMONIAL SLIDER ---
-    const sliderTrack = document.querySelector(".testimonials-track");
-    const slides = document.querySelectorAll(".testimonial-slide");
-    const prevBtn = document.querySelector(".testimonial-btn.prev");
-    const nextBtn = document.querySelector(".testimonial-btn.next");
-    const dotsContainer = document.querySelector(".testimonial-dots");
-
-    if (sliderTrack && slides.length > 0) {
-        let currentIndex = 0;
-        let autoSlideInterval;
-
-        // Create dots dynamically
-        slides.forEach((_, idx) => {
-            const dot = document.createElement("div");
-            dot.classList.add("testimonial-dot");
-            if (idx === 0) dot.classList.add("active");
-            dot.addEventListener("click", () => {
-                goToSlide(idx);
-                resetAutoSlide();
-            });
-            if (dotsContainer) dotsContainer.appendChild(dot);
-        });
-
-        const dots = document.querySelectorAll(".testimonial-dot");
-
-        const updateSliderPosition = () => {
-            sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-            // Update dots
-            if (dots.length > 0) {
-                dots.forEach(dot => dot.classList.remove("active"));
-                dots[currentIndex].classList.add("active");
-            }
-        };
-
-        const goToSlide = (index) => {
-            currentIndex = index;
-            updateSliderPosition();
-        };
-
-        const nextSlide = () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateSliderPosition();
-        };
-
-        const prevSlide = () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateSliderPosition();
-        };
-
-        if (nextBtn) {
-            nextBtn.addEventListener("click", () => {
-                nextSlide();
-                resetAutoSlide();
-            });
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener("click", () => {
-                prevSlide();
-                resetAutoSlide();
-            });
-        }
-
-        // Auto slide
-        const startAutoSlide = () => {
-            autoSlideInterval = setInterval(nextSlide, 6000); // every 6s
-        };
-
-        const resetAutoSlide = () => {
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-        };
-
-        startAutoSlide();
-
-        // Responsive adjustment on resize
-        window.addEventListener("resize", () => {
-            updateSliderPosition();
-        });
-    }
-
-    // --- 8. FAQ ACCORDION TRANSITION ---
-    const faqItems = document.querySelectorAll(".faq-item");
-
-    if (faqItems.length > 0) {
-        faqItems.forEach(item => {
-            const header = item.querySelector(".faq-header");
-            const body = item.querySelector(".faq-body");
-
-            if (header && body) {
-                header.addEventListener("click", () => {
-                    const isActive = item.classList.contains("active");
-
-                    // Close all other items
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove("active");
-                            otherItem.querySelector(".faq-body").style.maxHeight = null;
-                        }
-                    });
-
-                    // Toggle current item
-                    if (isActive) {
-                        item.classList.remove("active");
-                        body.style.maxHeight = null;
-                    } else {
-                        item.classList.add("active");
-                        body.style.maxHeight = body.scrollHeight + "px";
-                    }
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
-    }
+    });
 
-    // --- 9. APPOINTMENT FORM VALIDATION & SUCCESS MODAL ---
-    const bookingForm = document.getElementById("bookingForm");
-    const successModalOverlay = document.getElementById("successModalOverlay");
-    const modalCloseBtn = document.getElementById("modalCloseBtn");
 
-    if (bookingForm && successModalOverlay) {
-        bookingForm.addEventListener("submit", (e) => {
-            e.preventDefault();
+    // --- Scroll-Triggered Animations (Intersection Observer) ---
+    const animatedElements = document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right');
 
-            // Form inputs
-            const fullName = document.getElementById("booking_name").value.trim();
-            const phone = document.getElementById("booking_phone").value.trim();
-            const serviceSelect = document.getElementById("booking_service");
-            const serviceText = serviceSelect.options[serviceSelect.selectedIndex].text;
-            const date = document.getElementById("booking_date").value;
-            const time = document.getElementById("booking_time").value;
-            const message = document.getElementById("booking_message").value.trim();
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -80px 0px',
+        threshold: 0.1
+    };
 
-            // Simple client-side validation
-            if (!fullName || !phone || !date || !time || serviceSelect.value === "") {
-                alert("Please fill in all required fields.");
-                return;
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
             }
-
-            // Populate modal success details
-            document.getElementById("modal_res_name").innerText = fullName;
-            document.getElementById("modal_res_phone").innerText = phone;
-            document.getElementById("modal_res_service").innerText = serviceText;
-            document.getElementById("modal_res_datetime").innerText = `${formatDate(date)} at ${formatTime(time)}`;
-
-            // Optional LocalStorage Save (Luxury Admin Feature)
-            const newAppointment = {
-                id: 'NEWSHE-' + Date.now(),
-                fullName,
-                phone,
-                service: serviceText,
-                dateTime: `${date} ${time}`,
-                message,
-                created_at: new Date().toISOString()
-            };
-
-            const existingAppointments = JSON.parse(localStorage.getItem("new_she_appointments") || "[]");
-            existingAppointments.push(newAppointment);
-            localStorage.setItem("new_she_appointments", JSON.stringify(existingAppointments));
-
-            // Show beautiful Success Modal
-            successModalOverlay.classList.add("active");
-            document.body.style.overflow = "hidden";
-
-            // Reset the form
-            bookingForm.reset();
         });
+    }, observerOptions);
 
-        // Close Success Modal
-        if (modalCloseBtn) {
-            modalCloseBtn.addEventListener("click", () => {
-                successModalOverlay.classList.remove("active");
-                document.body.style.overflow = "initial";
+    animatedElements.forEach(function(el) {
+        observer.observe(el);
+    });
+
+
+    // --- FAQ Accordion ---
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(function(item) {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            faqItems.forEach(function(otherItem) {
+                otherItem.classList.remove('active');
             });
-        }
-
-        successModalOverlay.addEventListener("click", (e) => {
-            if (e.target === successModalOverlay) {
-                successModalOverlay.classList.remove("active");
-                document.body.style.overflow = "initial";
+            
+            // Toggle clicked item
+            if (!isActive) {
+                item.classList.add('active');
             }
         });
-    }
+    });
 
-    // Date & Time Formatting Utilities
-    function formatDate(dateStr) {
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const dateObj = new Date(dateStr);
-        return dateObj.toLocaleDateString('en-US', options);
-    }
 
-    function formatTime(timeStr) {
-        const [hourStr, minStr] = timeStr.split(':');
-        const hour = parseInt(hourStr);
-        const ampm = hour >= 12 ? 'PM' : 'AM';
-        const formattedHour = hour % 12 || 12;
-        return `${formattedHour}:${minStr} ${ampm}`;
-    }
-
-    // --- 10. SCROLL REVEAL OBSERVER ---
-    const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
-
-    if (revealElements.length > 0) {
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("revealed");
-                    // Once animate, stop observing
-                    revealObserver.unobserve(entry.target);
+    // --- Gallery Lightbox ---
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+            const imgSrc = this.querySelector('img').src;
+            const imgAlt = this.querySelector('img').alt;
+            
+            // Create lightbox
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox';
+            lightbox.innerHTML = `
+                <div class="lightbox-overlay"></div>
+                <div class="lightbox-content">
+                    <img src="${imgSrc}" alt="${imgAlt}">
+                    <button class="lightbox-close" aria-label="Close lightbox">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(lightbox);
+            document.body.style.overflow = 'hidden';
+            
+            // Animate in
+            setTimeout(function() {
+                lightbox.classList.add('active');
+            }, 10);
+            
+            // Close handlers
+            const closeLightbox = function() {
+                lightbox.classList.remove('active');
+                setTimeout(function() {
+                    document.body.removeChild(lightbox);
+                    document.body.style.overflow = '';
+                }, 300);
+            };
+            
+            lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            lightbox.querySelector('.lightbox-overlay').addEventListener('click', closeLightbox);
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function handler(e) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                    document.removeEventListener('keydown', handler);
                 }
             });
-        }, {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px" // Trigger slightly before element is in full view
         });
+    });
 
-        revealElements.forEach(el => revealObserver.observe(el));
+    // Add lightbox styles dynamically
+    const lightboxStyles = document.createElement('style');
+    lightboxStyles.textContent = `
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+        }
+        .lightbox-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            cursor: pointer;
+        }
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            z-index: 1;
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s ease;
+        }
+        .lightbox-close:hover {
+            color: #C8A24A;
+        }
+    `;
+    document.head.appendChild(lightboxStyles);
+
+
+    // --- Contact Form Handling ---
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const name = formData.get('name');
+        const phone = formData.get('phone');
+        const email = formData.get('email');
+        const service = formData.get('service');
+        const date = formData.get('appointment-date');
+        const message = formData.get('message');
+
+        // Validate
+        if (!name || !phone || !service) {
+            showNotification('Please fill in all required fields.', 'error');
+            return;
+        }
+
+        // Build WhatsApp message
+        let whatsappMsg = `Hello Paran Signature!%0A%0A`;
+        whatsappMsg += `*Name:* ${encodeURIComponent(name)}%0A`;
+        whatsappMsg += `*Phone:* ${encodeURIComponent(phone)}%0A`;
+        if (email) whatsappMsg += `*Email:* ${encodeURIComponent(email)}%0A`;
+        whatsappMsg += `*Service:* ${encodeURIComponent(service)}%0A`;
+        if (date) whatsappMsg += `*Preferred Date:* ${encodeURIComponent(date)}%0A`;
+        if (message) whatsappMsg += `*Message:* ${encodeURIComponent(message)}%0A`;
+        
+        // Show success notification
+        showNotification('Thank you! Your appointment request has been sent. We will contact you shortly.', 'success');
+        
+        // Open WhatsApp with the message
+        setTimeout(function() {
+            window.open(`https://wa.me/923224080586?text=${whatsappMsg}`, '_blank');
+        }, 1000);
+        
+        // Reset form
+        contactForm.reset();
+    });
+
+    // Notification system
+    function showNotification(message, type) {
+        // Remove existing notifications
+        const existing = document.querySelector('.notification');
+        if (existing) existing.remove();
+        
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.innerHTML = `
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+            <span>${message}</span>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Animate in
+        setTimeout(function() {
+            notification.classList.add('show');
+        }, 10);
+        
+        // Auto remove after 5 seconds
+        setTimeout(function() {
+            notification.classList.remove('show');
+            setTimeout(function() {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 300);
+        }, 5000);
     }
+
+    // Add notification styles
+    const notifStyles = document.createElement('style');
+    notifStyles.textContent = `
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            z-index: 99998;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .notification.show {
+            transform: translateX(0);
+        }
+        .notification-success {
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+        .notification-success i {
+            color: #22c55e;
+            font-size: 1.2rem;
+        }
+        .notification-error {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+        .notification-error i {
+            color: #ef4444;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 480px) {
+            .notification {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+        }
+    `;
+    document.head.appendChild(notifStyles);
+
+
+    // --- Set minimum date for appointment ---
+    const dateInput = document.getElementById('appointment-date');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    }
+
+
+    // --- Initialize ---
+    updateHeader();
+    updateBackToTop();
+    updateScrollProgress();
 });
