@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paran Signature | Salon & Aesthetics - Sheikhupura's premier luxury beauty salon and aesthetics studio. Premium bridal makeup, advanced skincare, professional hair styling, and aesthetic treatments. Book your luxury experience today.">
+    <title>Paran Signature | Luxury Salon & Aesthetics in Sheikhupura, Pakistan</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
 /* ============================================
    Paran Signature | Salon & Aesthetics
    Premium Luxury Salon Website Stylesheet
@@ -374,7 +391,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../assets/images/hero-salon.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
     background-color: var(--charcoal);
     overflow: hidden;
 }
@@ -530,7 +547,7 @@ section {
     align-items: center;
     gap: 12px;
     padding: 12px 16px;
-    background: var(--beige);
+    background: var(--cream);
     border-radius: var(--radius-sm);
     font-size: 0.85rem;
     font-weight: 500;
@@ -579,7 +596,7 @@ section {
 .experience-badge .number {
     display: block;
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--gold);
     line-height: 1;
@@ -595,10 +612,6 @@ section {
 }
 
 /* --- Services Section --- */
-.services {
-    background: var(--beige);
-}
-
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -641,7 +654,7 @@ section {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--beige), var(--beige-dark));
+    background: var(--cream);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -656,7 +669,7 @@ section {
 }
 
 .service-card:hover .service-icon {
-    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    background: var(--gold);
 }
 
 .service-card:hover .service-icon i {
@@ -670,40 +683,12 @@ section {
     margin-bottom: 15px;
 }
 
-.service-list {
-    text-align: left;
-}
-
-.service-list li {
-    padding: 8px 0;
-    color: var(--gray-500);
+.service-card p {
     font-size: 0.88rem;
-    border-bottom: 1px solid var(--gray-200);
-    position: relative;
-    padding-left: 20px;
+    color: var(--gray-500);
 }
 
-.service-list li:last-child {
-    border-bottom: none;
-}
-
-.service-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-}
-
-/* --- Why Choose Us --- */
-.why-choose-us {
-    background: var(--white);
-}
-
+/* --- Features Grid --- */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -729,7 +714,7 @@ section {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: var(--beige);
+    background: var(--cream);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -761,14 +746,9 @@ section {
 .feature-card p {
     font-size: 0.82rem;
     color: var(--gray-500);
-    line-height: 1.6;
 }
 
-/* --- Gallery Section --- */
-.gallery {
-    background: var(--beige);
-}
-
+/* --- Gallery --- */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -807,15 +787,13 @@ section {
 }
 
 .gallery-overlay i {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--gold);
 }
 
 .gallery-overlay span {
     color: var(--white);
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-transform: uppercase;
+    font-size: 0.8rem;
     letter-spacing: 2px;
 }
 
@@ -827,153 +805,7 @@ section {
     transform: scale(1.1);
 }
 
-/* --- Testimonials Section --- */
-.testimonials {
-    background: var(--white);
-}
-
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.testimonial-card {
-    background: var(--white);
-    padding: 40px 30px;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--gray-200);
-    transition: var(--transition);
-    position: relative;
-}
-
-.testimonial-card::before {
-    content: '"';
-    font-family: var(--font-heading);
-    font-size: 5rem;
-    color: var(--gold);
-    opacity: 0.15;
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    line-height: 1;
-}
-
-.testimonial-card:hover {
-    border-color: var(--gold);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-5px);
-}
-
-.rating {
-    display: flex;
-    gap: 3px;
-    margin-bottom: 20px;
-}
-
-.rating i {
-    color: var(--gold);
-    font-size: 0.9rem;
-}
-
-.testimonial-text {
-    font-size: 0.9rem;
-    color: var(--gray-500);
-    line-height: 1.8;
-    margin-bottom: 25px;
-    font-style: italic;
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.author-info h4 {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    color: var(--black);
-}
-
-.author-info span {
-    font-size: 0.8rem;
-    color: var(--gold);
-}
-
-/* --- FAQ Section --- */
-.faq {
-    background: var(--beige);
-}
-
-.faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.faq-item {
-    background: var(--white);
-    border-radius: var(--radius-md);
-    margin-bottom: 15px;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-}
-
-.faq-item:hover {
-    box-shadow: var(--shadow-md);
-}
-
-.faq-question {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 30px;
-    cursor: pointer;
-    gap: 15px;
-}
-
-.faq-question h3 {
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--black);
-    flex: 1;
-}
-
-.faq-question i {
-    color: var(--gold);
-    font-size: 0.9rem;
-    transition: var(--transition);
-    flex-shrink: 0;
-}
-
-.faq-item.active .faq-question i {
-    transform: rotate(180deg);
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.4s ease;
-}
-
-.faq-item.active .faq-answer {
-    max-height: 200px;
-    padding: 0 30px 22px;
-}
-
-.faq-answer p {
-    font-size: 0.88rem;
-    color: var(--gray-500);
-    line-height: 1.8;
-}
-
 /* --- Contact Section --- */
-.contact {
-    background: var(--white);
-}
-
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -985,7 +817,6 @@ section {
 .contact-form-container h3 {
     font-family: var(--font-heading);
     font-size: 1.5rem;
-    color: var(--black);
     margin-bottom: 30px;
 }
 
@@ -993,41 +824,27 @@ section {
     display: flex;
     gap: 20px;
     margin-bottom: 25px;
-    align-items: flex-start;
 }
 
 .info-item > i {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: var(--beige);
+    background: var(--cream);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--gold);
-    font-size: 1rem;
-    flex-shrink: 0;
 }
 
 .info-item h4 {
     font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--black);
     margin-bottom: 4px;
 }
 
 .info-item p {
     font-size: 0.85rem;
     color: var(--gray-500);
-    line-height: 1.6;
-}
-
-.info-item a {
-    color: var(--gold);
-}
-
-.info-item a:hover {
-    color: var(--gold-dark);
 }
 
 .map-container {
@@ -1037,27 +854,11 @@ section {
     box-shadow: var(--shadow-sm);
 }
 
-.map-container iframe {
-    display: block;
-}
-
-.map-btn {
-    display: inline-flex;
-    margin-top: 15px;
-    border-color: var(--gold);
-    color: var(--gold);
-}
-
-.map-btn:hover {
-    background: var(--gold);
-    color: var(--white);
-}
-
-/* Contact Form */
 .contact-form {
-    background: var(--beige);
+    background: var(--white);
     padding: 40px;
     border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
 }
 
 .form-group {
@@ -1065,122 +866,64 @@ section {
 }
 
 .form-group input,
-.form-group select,
 .form-group textarea {
     width: 100%;
     padding: 14px 20px;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
     border: 1px solid var(--gray-200);
     border-radius: var(--radius-sm);
-    background: var(--white);
-    color: var(--black);
-    transition: var(--transition);
     outline: none;
+    font-family: inherit;
 }
 
 .form-group input:focus,
-.form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(200,162,74,0.1);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.form-group select {
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 20px;
-    padding-right: 40px;
 }
 
 /* --- Footer --- */
 .footer {
     background: var(--charcoal);
     color: var(--white);
-    padding: 80px 0 0;
+    padding: 80px 0 30px;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    grid-template-columns: 2fr 1fr;
     gap: 40px;
     padding-bottom: 50px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .footer-section h3 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
     color: var(--gold);
     margin-bottom: 5px;
 }
 
-.footer-section h4 {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    color: var(--white);
-    margin-bottom: 20px;
-}
-
 .footer-tagline {
     font-size: 0.75rem;
-    color: var(--gold);
-    text-transform: uppercase;
     letter-spacing: 3px;
     margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
-.footer-section p {
-    font-size: 0.85rem;
-    color: var(--gray-400);
-    line-height: 1.7;
-}
-
-.footer-section ul li {
-    margin-bottom: 10px;
-}
-
-.footer-section ul li a {
-    font-size: 0.85rem;
-    color: var(--gray-400);
-    transition: var(--transition);
-}
-
-.footer-section ul li a:hover {
-    color: var(--gold);
-    padding-left: 5px;
+.footer-section h4 {
+    margin-bottom: 20px;
 }
 
 .contact-list li {
     display: flex;
-    align-items: flex-start;
     gap: 12px;
-}
-
-.contact-list li i {
-    color: var(--gold);
-    margin-top: 3px;
-    flex-shrink: 0;
-}
-
-.contact-list li span,
-.contact-list li a {
+    margin-bottom: 10px;
     font-size: 0.85rem;
-    color: var(--gray-400);
+}
+
+.contact-list i {
+    color: var(--gold);
 }
 
 .social-links {
     display: flex;
-    gap: 12px;
+    gap: 15px;
     margin-top: 20px;
 }
 
@@ -1192,95 +935,52 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
-    font-size: 0.9rem;
-    transition: var(--transition);
 }
 
 .social-links a:hover {
     background: var(--gold);
-    border-color: var(--gold);
-    transform: translateY(-3px);
 }
 
 .footer-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 25px 0;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.footer-bottom p {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 25px;
+    text-align: center;
     font-size: 0.8rem;
-    color: var(--gray-400);
 }
 
-.footer-links {
-    display: flex;
-    gap: 20px;
-}
-
-.footer-links a {
-    font-size: 0.8rem;
-    color: var(--gray-400);
-}
-
-.footer-links a:hover {
-    color: var(--gold);
-}
-
-/* --- WhatsApp Floating Button --- */
+/* --- Floating Button --- */
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
     right: 30px;
     width: 60px;
     height: 60px;
-    border-radius: 50%;
     background: #25D366;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
+    color: white;
     font-size: 1.8rem;
-    box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4);
-    z-index: 9998;
-    transition: var(--transition);
-    animation: pulse-whatsapp 2s infinite;
+    z-index: 1000;
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 35px rgba(37, 211, 102, 0.5);
-}
-
-@keyframes pulse-whatsapp {
-    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
-/* --- Back to Top --- */
 .back-to-top {
     position: fixed;
     bottom: 30px;
     left: 30px;
     width: 45px;
     height: 45px;
-    border-radius: 50%;
-    background: var(--black);
+    background: var(--charcoal);
     color: var(--gold);
-    border: 1px solid var(--gold);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 9998;
     opacity: 0;
     visibility: hidden;
-    transition: var(--transition);
+    transition: 0.3s;
 }
 
 .back-to-top.visible {
@@ -1288,294 +988,269 @@ section {
     visibility: visible;
 }
 
-.back-to-top:hover {
-    background: var(--gold);
-    color: var(--white);
-    transform: translateY(-3px);
-}
-
-/* --- Animation Classes --- */
-.fade-in {
+/* --- Animations --- */
+.fade-in, .fade-in-up, .fade-in-left, .fade-in-right {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: 0.8s;
 }
 
-.fade-in.visible {
+.fade-in.visible, .fade-in-up.visible, .fade-in-left.visible, .fade-in-right.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
 
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
+.fade-in-up { transform: translateY(30px); }
+.fade-in-left { transform: translateX(-30px); }
+.fade-in-right { transform: translateX(30px); }
 
-.fade-in-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
 
-.fade-in-left {
-    opacity: 0;
-    transform: translateX(-40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade-in-left.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.fade-in-right {
-    opacity: 0;
-    transform: translateX(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade-in-right.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.delay-1 {
-    transition-delay: 0.15s !important;
-}
-
-.delay-2 {
-    transition-delay: 0.3s !important;
-}
-
-/* Hero animations */
-.hero .fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: heroFadeIn 1s ease forwards;
-}
-
-.hero .delay-1 {
-    animation-delay: 0.3s;
-}
-
-.hero .delay-2 {
-    animation-delay: 0.6s;
-}
-
-@keyframes heroFadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* --- Responsive Design --- */
-@media (max-width: 1024px) {
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* Responsive */
+@media (max-width: 991px) {
+    .services-grid, .features-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-    /* Mobile Navigation */
-    .mobile-menu-toggle {
-        display: flex;
-    }
-
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 350px;
-        height: 100vh;
-        background: var(--white);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 25px;
-        transition: right 0.4s ease;
-        box-shadow: -10px 0 40px rgba(0,0,0,0.15);
-    }
-
-    .nav-menu.active {
-        right: 0;
-    }
-
-    .nav-link {
-        color: var(--black);
-        font-size: 1rem;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-        color: var(--gold);
-    }
-
-    /* About Section */
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .about-image {
-        order: -1;
-    }
-
-    .image-wrapper img {
-        height: 350px;
-    }
-
-    /* Services */
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* Features */
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-    /* Gallery */
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Testimonials */
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* Contact */
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .contact-form {
-        padding: 30px 20px;
-    }
-
-    /* Footer */
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    /* Sections */
-    section {
-        padding: 70px 0;
-    }
-
-    /* Hero */
-    .hero {
-        min-height: 600px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
+    .about-content, .contact-content, .footer-content { grid-template-columns: 1fr; }
+    .nav-menu { display: none; }
+    .hero-title { font-size: 2.5rem; }
+    section { padding: 70px 0; }
+    .services-grid, .features-grid, .gallery-grid { grid-template-columns: 1fr; }
 }
+    </style>
+</head>
+<body>
 
-@media (max-width: 480px) {
-    .about-features {
-        grid-template-columns: 1fr;
-    }
+    <div id="scroll-progress"></div>
 
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <span class="preloader-main" style="color: #D4AF37; font-family: 'Playfair Display'; font-size: 2rem;">Paran Signature</span><br>
+                <span class="preloader-sub" style="color: #999; letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem;">Salon & Aesthetics</span>
+            </div>
+        </div>
+    </div>
 
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-main" style="font-family: 'Playfair Display'; font-weight: 700; font-size: 1.5rem; color: white;">Paran Signature</span>
+                <span class="logo-sub" style="font-size: 0.6rem; color: #D4AF37; text-transform: uppercase; letter-spacing: 3px;">Salon & Aesthetics</span>
+            </a>
+            <div class="nav-wrapper">
+                <nav class="nav-menu">
+                    <a href="#home" class="nav-link" style="color: white; margin: 0 15px; font-size: 0.8rem; text-transform: uppercase;">Home</a>
+                    <a href="#about" class="nav-link" style="color: white; margin: 0 15px; font-size: 0.8rem; text-transform: uppercase;">About</a>
+                    <a href="#services" class="nav-link" style="color: white; margin: 0 15px; font-size: 0.8rem; text-transform: uppercase;">Services</a>
+                    <a href="#gallery" class="nav-link" style="color: white; margin: 0 15px; font-size: 0.8rem; text-transform: uppercase;">Gallery</a>
+                    <a href="#contact" class="nav-link" style="color: white; margin: 0 15px; font-size: 0.8rem; text-transform: uppercase;">Contact</a>
+                </nav>
+                <a href="tel:03224080586" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.7rem;">Book Now</a>
+            </div>
+        </div>
+    </header>
 
-    .hero-title {
-        font-size: 1.8rem;
-    }
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="hero-title fade-in-up">Paran Signature | Salon & Aesthetics</h1>
+                <p class="hero-subtitle fade-in-up delay-1">Where Beauty Meets Elegance</p>
+                <div class="hero-buttons fade-in-up delay-2">
+                    <a href="tel:03224080586" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call to Book
+                    </a>
+                    <a href="https://maps.app.goo.gl/TCKWmhbsHzzZMGvn7" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    .btn {
-        padding: 12px 24px;
-        font-size: 0.8rem;
-    }
+    <section id="about" class="about section-bg-cream">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-subtitle">About Us</span>
+                <h2 class="section-title">Paran Signature | Salon & Aesthetics</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text fade-in-left">
+                    <h3>Sheikhupura's Premier Beauty Destination</h3>
+                    <p>At Paran Signature, we provide a luxurious and calming experience for every client. Located in Sheikhupura, our studio is a haven for those seeking the finest in hair, skin, and aesthetic treatments.</p>
+                    <p>Our expert team combines years of experience with modern techniques to ensure you leave feeling radiant. We prioritize hygiene, professional care, and a personalized approach.</p>
+                    <div class="about-features">
+                        <div class="feature-item"><i class="fas fa-certificate"></i><span>Experienced Staff</span></div>
+                        <div class="feature-item"><i class="fas fa-sparkles"></i><span>Modern Techniques</span></div>
+                        <div class="feature-item"><i class="fas fa-shield-virus"></i><span>High Hygiene</span></div>
+                        <div class="feature-item"><i class="fas fa-heart"></i><span>Trusted Excellence</span></div>
+                    </div>
+                </div>
+                <div class="about-image fade-in-right">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Salon Interior">
+                        <div class="experience-badge">
+                            <span class="number">Premium</span>
+                            <span class="text">Quality Service</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    .faq-question {
-        padding: 18px 20px;
-    }
+    <section id="services" class="services section-bg-pink">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-subtitle">Our Services</span>
+                <h2 class="section-title">Indulge in Luxury</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <div class="service-icon"><i class="fas fa-cut"></i></div>
+                    <h3>Hair Styling & Cuts</h3>
+                    <p>Professional cuts and styling tailored to your look.</p>
+                </div>
+                <div class="service-card fade-in-up delay-1">
+                    <div class="service-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Hair Coloring</h3>
+                    <p>Subtle highlights or bold transformations.</p>
+                </div>
+                <div class="service-card fade-in-up delay-2">
+                    <div class="service-icon"><i class="fas fa-spa"></i></div>
+                    <h3>Facials & Skincare</h3>
+                    <p>Advanced treatments for a healthy complexion.</p>
+                </div>
+                <div class="service-card fade-in-up">
+                    <div class="service-icon"><i class="fas fa-magic"></i></div>
+                    <h3>Bridal Makeup</h3>
+                    <p>Creating your dream look for your special day.</p>
+                </div>
+                <div class="service-card fade-in-up delay-1">
+                    <div class="service-icon"><i class="fas fa-star"></i></div>
+                    <h3>Aesthetic Treatments</h3>
+                    <p>Non-surgical procedures for beauty enhancement.</p>
+                </div>
+                <div class="service-card fade-in-up delay-2">
+                    <div class="service-icon"><i class="fas fa-hand-sparkles"></i></div>
+                    <h3>Manicure/Pedicure</h3>
+                    <p>Pamper your hands and feet with luxury care.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    .faq-question h3 {
-        font-size: 0.88rem;
-    }
+    <section id="gallery" class="gallery section-bg-cream">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-subtitle">Gallery</span>
+                <h2 class="section-title">Our Recent Work</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in-up"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Work 1"></div>
+                <div class="gallery-item fade-in-up delay-1"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Work 2"></div>
+                <div class="gallery-item fade-in-up delay-2"><img src="https://images.unsplash.com/photo-1527799822394-46585d70394c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Work 3"></div>
+                <div class="gallery-item fade-in-up"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Work 4"></div>
+                <div class="gallery-item fade-in-up delay-1"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Work 5"></div>
+                <div class="gallery-item fade-in-up delay-2"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f8c2b1b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Work 6"></div>
+            </div>
+        </div>
+    </section>
 
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-        bottom: 20px;
-        right: 20px;
-    }
+    <section id="contact" class="contact section-bg-pink">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-subtitle">Find Us</span>
+                <h2 class="section-title">Location & Contact</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info fade-in-left">
+                    <h3>Visit Our Studio</h3>
+                    <div class="info-item"><i class="fas fa-map-marker-alt"></i><div><h4>Address</h4><p>Paran Signature Studio, Paran Plaza, near Children Hospital, Sheikhupura, 39350</p></div></div>
+                    <div class="info-item"><i class="fas fa-phone"></i><div><h4>Phone</h4><p>0322 4080586</p></div></div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3401.408752252158!2d73.98599407559196!3d31.718386974123537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3918c50020a112df%3A0xe74983050b86a89c!2sParan%20Signature!5e0!3m2!1sen!2s!4v1722700000000!5m2!1sen!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="contact-form-container fade-in-right">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group"><input type="text" name="name" placeholder="Your Name" required></div>
+                        <div class="form-group"><input type="tel" name="phone" placeholder="Phone Number" required></div>
+                        <div class="form-group"><textarea name="message" placeholder="Your Message" rows="5"></textarea></div>
+                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    .back-to-top {
-        bottom: 20px;
-        left: 20px;
-        width: 40px;
-        height: 40px;
-    }
-}
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Paran Signature</h3>
+                    <p class="footer-tagline">Salon & Aesthetics</p>
+                    <p>Where Beauty Meets Elegance. Premium salon services in a luxurious environment.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i><span>Paran Plaza, Sheikhupura</span></li>
+                        <li><i class="fas fa-phone"></i><span>0322 4080586</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Paran Signature | Salon & Aesthetics. All rights reserved.</p></div>
+        </div>
+    </footer>
 
-/* --- Accessibility --- */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
+    <a href="https://wa.me/923224080586" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    <div id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></div>
 
-:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 3px;
-}
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const preloader = document.getElementById('preloader');
+    setTimeout(() => preloader.style.display = 'none', 1000);
 
-/* --- Selection --- */
-::selection {
-    background: var(--gold);
-    color: var(--white);
-}
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
 
-/* --- Scrollbar --- */
-::-webkit-scrollbar {
-    width: 8px;
-}
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) backToTop.classList.add('visible');
+        else backToTop.classList.remove('visible');
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
 
-::-webkit-scrollbar-track {
-    background: var(--beige);
-}
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {threshold: 0.1});
 
-::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 10px;
-}
+    document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right').forEach(el => observer.observe(el));
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--gold-dark);
-}
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = this.querySelector('[name="name"]').value;
+        const phone = this.querySelector('[name="phone"]').value;
+        const msg = this.querySelector('[name="message"]').value;
+        const whatsappMsg = `Name: ${name}%0APhone: ${phone}%0AMessage: ${msg}`;
+        window.open(`https://wa.me/923224080586?text=${whatsappMsg}`, '_blank');
+    });
+});
+    </script>
+</body>
+</html>
